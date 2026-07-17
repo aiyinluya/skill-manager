@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- App tile background: brand blue -> indigo -> violet -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="48%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+
+    <!-- Soft top-left glow for depth -->
+    <radialGradient id="bgGlow" cx="34%" cy="28%" r="68%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Glow behind the central bolt -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="42%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Bolt gradient: white -> cool lavender -->
+    <linearGradient id="bolt" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e0e7ff"/>
+    </linearGradient>
+
+    <!-- Subtle shadow under the bolt -->
+    <filter id="boltShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1e1b4b" flood-opacity="0.28"/>
+    </filter>
+
+    <!-- Shadow for the editor nodes -->
+    <filter id="nodeShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1e1b4b" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- ═══════════════════ BACKGROUND TILE ═══════════════════ -->
+  <rect width="1024" height="1024" rx="220" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="220" fill="url(#bgGlow)"/>
+
+  <!-- ════════════════ SYNC LINKS (hub -> editors, tinted per editor) ═════════════════ -->
+  <!-- White casing first: keeps every line legible on the gradient background -->
+  <g stroke="#ffffff" stroke-opacity="0.85" stroke-width="16" stroke-linecap="round" fill="none">
+    <line x1="512" y1="512" x2="512" y2="240"/>
+    <line x1="512" y1="512" x2="296" y2="632"/>
+    <line x1="512" y1="512" x2="728" y2="632"/>
+  </g>
+  <!-- Colored core: each link takes its target editor's color -->
+  <g stroke-width="9" stroke-linecap="round" fill="none">
+    <line x1="512" y1="512" x2="512" y2="240" stroke="#22d3ee"/>
+    <line x1="512" y1="512" x2="296" y2="632" stroke="#a78bfa"/>
+    <line x1="512" y1="512" x2="728" y2="632" stroke="#f472b6"/>
+  </g>
+
+  <!-- Directional arrowheads (skill flowing OUT to each editor) -->
+  <g stroke="#ffffff" stroke-width="3" stroke-linejoin="round">
+    <!-- top -> cyan editor -->
+    <polygon points="512,312 532,336 492,336" fill="#22d3ee"/>
+    <!-- lower-left -> violet editor -->
+    <polygon points="359,597 370,568 390,603" fill="#a78bfa"/>
+    <!-- lower-right -> pink editor -->
+    <polygon points="665,597 634,603 653,568" fill="#f472b6"/>
+  </g>
+
+  <!-- ════════════════ EDITOR NODES (different editors) ═════════════════ -->
+  <g filter="url(#nodeShadow)">
+    <!-- top node: cyan editor -->
+    <circle cx="512" cy="240" r="54" fill="#22d3ee"/>
+    <circle cx="512" cy="240" r="54" fill="none" stroke="#ffffff" stroke-opacity="0.9" stroke-width="8"/>
+    <!-- lower-left node: violet editor -->
+    <circle cx="296" cy="632" r="54" fill="#a78bfa"/>
+    <circle cx="296" cy="632" r="54" fill="none" stroke="#ffffff" stroke-opacity="0.9" stroke-width="8"/>
+    <!-- lower-right node: pink editor -->
+    <circle cx="728" cy="632" r="54" fill="#f472b6"/>
+    <circle cx="728" cy="632" r="54" fill="none" stroke="#ffffff" stroke-opacity="0.9" stroke-width="8"/>
+  </g>
+
+  <!-- ════════════════ CENTRAL SKILL (the bolt) ═════════════════ -->
+  <circle cx="512" cy="512" r="210" fill="url(#coreGlow)"/>
+  <path filter="url(#boltShadow)" fill="url(#bolt)"
+        d="M 527 400 L 457 520 L 502 520 L 457 624 L 567 480 L 517 480 Z"/>
+</svg>
